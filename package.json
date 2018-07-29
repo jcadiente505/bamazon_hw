@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/jcadiente505/bamazon_hw#readme",
   "dependencies": {
+    "cli-table": "^0.3.1",
+    "colors": "^1.3.1",
     "inquirer": "^6.0.0",
     "mysql": "^2.16.0"
   }
