@@ -70,14 +70,17 @@ const userInput = () => {
         let purchase = parseInt(response.itemID);
         let purchaseQ = response.quantity;
 
-        connection.query("SELECT * FROM products WHERE id = ? ", purchase, (err, result) => {
+        connection.query("SELECT * FROM products WHERE id = ?", purchase, (err, result) => {
             if (err) throw err
             // check quantity in store
-            console.log(purchase)
-            console.log(purchaseQ)
-            console.log(result)
 
             if (purchaseQ < result[0].stock_quantity) {
+
+                // supervisor variables
+                let departmentName = result[0].department_name
+                let addSale = result[0].price * purchaseQ
+                // 
+
                 console.log("You Bought: " + purchaseQ + " " + result[0].product_name)
                 let total = result[0].price * purchaseQ
                 console.log("Your total is: " + total)
@@ -90,6 +93,17 @@ const userInput = () => {
                     console.log(colors.cyan('Your order has been processed.  Thank you for shopping with us!'));
                     newOrder();
                 })
+
+                connection.query('SELECT * FROM products WHERE department_name = ?', [departmentName], function (err, result) {
+                    let updateSales = result[0].product_sales + addSale;
+                    connection.query('UPDATE products SET ? WHERE ?', [{
+                        product_sales: updateSales
+                    }, {
+                        department_name: departmentName 
+                    }], function (err, res) {
+                    })
+                })
+                
             }
             else {
                 console.log("That product is Out of Stock!")
@@ -100,19 +114,22 @@ const userInput = () => {
     })
 }
 
-function newOrder(){
-	inquirer.prompt([{
-		type: 'confirm',
-		name: 'choice',
-		message: 'Would you like to place another order?'
-	}]).then(function(answer){
-		if(answer.choice){
-			productTable();
-		}
-		else{
-			console.log('Thank you for shopping at Bamazon!');
-			connection.end();
-		}
-	})
+function newOrder() {
+    inquirer.prompt([{
+        type: 'confirm',
+        name: 'choice',
+        message: 'Would you like to place another order?'
+    }]).then(function (answer) {
+        if (answer.choice) {
+            productTable();
+        }
+        else {
+            console.log('Thank you for shopping at Bamazon!');
+            connection.end();
+        }
+    })
 };
+
+
+
 
