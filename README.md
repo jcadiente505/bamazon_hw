@@ -25,12 +25,13 @@ SOFTWARE.
 
 =============================CLI IMAGES=====================================
 
-![customer CLI](Screenshot (28).png)
-![Image description](Screenshot (29).png)
-![Image description](Screenshot (39).png)
-![Image description](Screenshot (40).png)
-![Image description](Screenshot (41).png)
-![Image description](Screenshot (42).png)
-![Image description](Screenshot (43).png)
-![Image description](Screenshot (44).png)
-![Image description](Screenshot (52).png)
+![customer CLI](images/customer1.png)
+![customer CLI](images/customer2.png)
+![customer CLI](images/manager1.png)
+![customer CLI](images/manager2.png)
+![customer CLI](images/manager3.png)
+![customer CLI](images/manager4.png)
+![customer CLI](images/manager5.png)
+![customer CLI](images/manager6.png)
+![customer CLI](images/supervisor1.png)
+
